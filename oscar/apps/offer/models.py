@@ -1358,16 +1358,15 @@ class FixedPriceBenefit(Benefit):
 
 
 class MultibuyDiscountBenefit(Benefit):
-    _description = _("Cheapest product from %(range)s is free")
+    _description = _("Cheapest product from '%(range)s' is free")
 
     def __unicode__(self):
-        return self._description % {
-            'range': self.range.name.lower()}
+        return self.description
 
     @property
     def description(self):
         return self._description % {
-            'range': range_anchor(self.range)}
+            'range': self.range.name.lower()}
 
     class Meta:
         proxy = True
